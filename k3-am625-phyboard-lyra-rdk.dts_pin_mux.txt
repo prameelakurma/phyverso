@@ -1,0 +1,33 @@
+&main_spi0 {
+    #address-cells = <1>;
+    #size-cells = <0>;
+    pinctrl-names = "default";
+    pinctrl-0 = <&main_spi0_pins_default>;
+    // ti,spi-num-cs = <2>;
+    ti,pindir-d0-out-d1-in;
+    status = "okay";
+ 
+    cg5317_0: ethernet@0 {
+        compatible = "cg,cg5317";
+        reg = <0x0>;
+        interrupts-extended = <&main_gpio0 42 IRQ_TYPE_EDGE_RISING>, <&main_gpio0 41 IRQ_TYPE_EDGE_RISING>;
+        interrupt-names = "gp_irq", "rx_irq";
+        spi-cpha;
+        spi-max-frequency = <8000000>;
+    };
+};
+ 
+main_spi0_pins_default: main-spi0-pins-default {
+    pinctrl-single,pins = <
+        AM62X_IOPAD(0x1bc, PIN_INPUT, 0) /* SPI0_CLK */
+        AM62X_IOPAD(0x1c0, PIN_OUTPUT, 0) /* SPI0_D0 */
+        AM62X_IOPAD(0x1c4, PIN_INPUT, 0)  /* SPI0_D1 */
+        AM62X_IOPAD(0x1b4, PIN_OUTPUT, 0) /* SPI0_CS0 */
+        // AM62X_IOPAD(0x1b8, PIN_OUTPUT, 0) /* SPI0_CS1 */
+        AM62X_IOPAD(0xA8, PIN_INPUT, 7)   /* GPIO0_41 */
+        AM62X_IOPAD(0xAC, PIN_INPUT, 7)   /* GPIO0_42 */
+        AM62X_IOPAD(0xB0, PIN_INPUT, 7)   /* GPIO0_43 */
+        AM62X_IOPAD(0xB4, PIN_INPUT, 7)   /* GPIO0_44 */
+        AM62X_IOPAD(0x1F0, PIN_OUTPUT, 7) /* EXT_REFCLK1 */
+>;
+};

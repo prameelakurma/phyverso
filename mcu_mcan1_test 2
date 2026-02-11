@@ -1,0 +1,257 @@
+root@am62-phyverso-evcs:~# dmesg | grep -nri can
+124:[    0.351305] HugeTLB: 0 KiB vmemmap can be freed for a 1.00 GiB page
+126:[    0.364656] HugeTLB: 0 KiB vmemmap can be freed for a 32.0 MiB page
+128:[    0.378004] HugeTLB: 0 KiB vmemmap can be freed for a 2.00 MiB page
+130:[    0.391351] HugeTLB: 0 KiB vmemmap can be freed for a 64.0 KiB page
+412:[    5.408358] CAN device driver interface
+426:[    5.740362] m_can_platform 20701000.can: m_can device registered (irq=485, version=32)
+427:[    5.762851] m_can_platform 4e00000.can: m_can device registered (irq=0, version=32)
+431:[    6.185274] m_can_platform 20701000.can main_mcan0: renamed from can0
+443:[    7.764128] IPv6: ADDRCONF(NETDEV_CHANGE): can1: link becomes ready
+448:[   20.649273] xhci-hcd xhci-hcd.4.auto: can't setup: -110
+root@am62-phyverso-evcs:~#  ip link set can1 down                                                                                                                       
+root@am62-phyverso-evcs:~# ip link set can1 up type can bitrate 1000000                                                                                                 
+[  145.034531] IPv6: ADDRCONF(NETDEV_CHANGE): can1: link becomes ready
+root@am62-phyverso-evcs:~# ip link set can1 up                                                                                                                          
+root@am62-phyverso-evcs:~# cansend can1 000#DE.AD.BE.EF.CA.FE.BA.BE                                                                                                     
+[  169.090225] can: controller area network core
+[  169.094821] NET: Registered PF_CAN protocol family
+[  169.110449] can: raw protocol
+root@am62-phyverso-evcs:~# candump can1
+  can1  000   [8]  DE AD BE EF CA FE BA BE
+
+CTRL-A Z for help | 115200 8N1 | NOR | Minicom 2.8 | VT102 | Offline | ttyUSB0                                                                                         
+
+
+
+
+
+root@ruggedboard-imx6ul:~# ifconfig -a
+can0      Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
+          UP RUNNING NOARP  MTU:16  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:10 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+          Interrupt:24 
+
+eth0      Link encap:Ethernet  HWaddr 50:2D:F4:10:82:B1  
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+eth1      Link encap:Ethernet  HWaddr 50:2D:F4:10:82:B2  
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:82 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:82 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:6220 (6.0 KiB)  TX bytes:6220 (6.0 KiB)
+
+sit0      Link encap:IPv6-in-IPv4  
+          NOARP  MTU:1480  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+root@ruggedboard-imx6ul:~#  ip link set can0 down                                                                                                                       
+root@ruggedboard-imx6ul:~# ip link set can0 up type can bitrate 1000000
+[  164.842158] IPv6: ADDRCONF(NETDEV_CHANGE): can0: link becomes ready
+root@ruggedboard-imx6ul:~# ip link set can0 up
+root@ruggedboard-imx6ul:~# candump can0
+  can0  000   [8]  DE AD BE EF CA FE BA BE
+^Croot@ruggedboard-imx6ul:~# cansend can0 000#DE.AD.BE.EF.CA.FE.BA.BE                                                                                                   
+root@ruggedboard-imx6ul:~# cansend can0 000#DE.AD.BE.EF.CA.FE.BA.BE 
+root@ruggedboard-imx6ul:~# 
+CTRL-A Z for help | 115200 8N1 | NOR | Minicom 2.8 | VT102 | Offline | ttyUSB1                                                                                         
+
+
+
+
+
+
+
+
+root@am62-phyverso-evcs:~# ip link set main_mcan0 down                                                                                                                  
+root@am62-phyverso-evcs:~# ip link set main_mcan0 up type can bitrate 1000000                                                                                           
+[  721.158104] IPv6: ADDRCONF(NETDEV_CHANGE): main_mcan0: link becomes ready
+root@am62-phyverso-evcs:~# ip link set main_mcan0 up                                                                                                                    
+root@am62-phyverso-evcs:~# cansend main_mcan0 000#DE.AD.BE.EF.CA.FE.BA.BE                                                                                               
+root@am62-phyverso-evcs:~# candump main_mcan0
+  main_mcan0  000   [8]  DE AD BE EF CA FE BA BE
+
+
+
+root@ruggedboard-imx6ul:~#  ip link set can0 down                                                                                                                       
+root@ruggedboard-imx6ul:~# ip link set can0 up type can bitrate 1000000
+[  164.842158] IPv6: ADDRCONF(NETDEV_CHANGE): can0: link becomes ready
+root@ruggedboard-imx6ul:~# ip link set can0 up
+root@ruggedboard-imx6ul:~# candump can0
+  can0  000   [8]  DE AD BE EF CA FE BA BE
+^Croot@ruggedboard-imx6ul:~# cansend can0 000#DE.AD.BE.EF.CA.FE.BA.BE                                                                                                   
+root@ruggedboard-imx6ul:~# cansend can0 000#DE.AD.BE.EF.CA.FE.BA.BE 
+root@ruggedboard-imx6ul:~# cansend can0 000#DE.AD.BE.EF.CA.FE.BA.BE 
+root@ruggedboard-imx6ul:~# candump can0
+  can0  000   [8]  DE AD BE EF CA FE BA BE
+  can0  000   [8]  DE AD BE EF CA FE BA BE
+root@ruggedboard-imx6ul:~# candump can0
+  can0  000   [8]  DE AD BE EF CA FE BA BE
+^Croot@ruggedboard-imx6ul:~# cansend can0 000#DE.AD.BE.EF.CA.FE.BA.BE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mcu_mcan1 test
+--------------
+
+
+
+root@am62-phyverso-evcs:~# 
+root@am62-phyverso-evcs:~# 
+root@am62-phyverso-evcs:~#  ip link set can1 down                                                                                                                       
+root@am62-phyverso-evcs:~#  ip link set can1 up type can bitrate 1000000                                                                                                
+[  121.755821] IPv6: ADDRCONF(NETDEV_CHANGE): can1: link becomes ready
+root@am62-phyverso-evcs:~#  ip link set can1 up  
+root@am62-phyverso-evcs:~# candump can1
+[  141.395657] can: controller area network core
+[  141.400262] NET: Registered PF_CAN protocol family
+[  141.416068] can: raw protocol
+  can1  000   [8]  DE AD BE EF CA FE BA BE
+  can1  000   [8]  DE AD BE EF CA FE BA BE
+  can1  000   [8]  DE AD BE EF CA FE BA BE
+  can1  000   [8]  DE AD BE EF CA FE BA BE
+  can1  000   [8]  DE AD BE EF CA FE BA BE
+^Croot@am62-phyverso-evcs:~# cansend can1 000#DE.AD.BE.EF.CA.FE.BA.BE                                                                                                   
+root@am62-phyverso-evcs:~# cansend can1 000#DE.AD.BE.EF.CA.FE.BA.BE
+root@am62-phyverso-evcs:~# cansend can1 000#DE.AD.BE.EF.CA.FE.BA.BE
+root@am62-phyverso-evcs:~# cansend can1 000#DE.AD.BE.EF.CA.FE.BA.BE
+root@am62-phyverso-evcs:~# cansend can1 000#DE.AD.BE.EF.CA.FE.BA.BE
+root@am62-phyverso-evcs:~# cansend can1 000#DE.AD.BE.EF.CA.FE.BA.BE
+root@am62-phyverso-evcs:~# 
+root@am62-phyverso-evcs:~# 
+root@am62-phyverso-evcs:~# dmesg | grep can
+[    0.351274] HugeTLB: 0 KiB vmemmap can be freed for a 1.00 GiB page
+[    0.364626] HugeTLB: 0 KiB vmemmap can be freed for a 32.0 MiB page
+[    0.377973] HugeTLB: 0 KiB vmemmap can be freed for a 2.00 MiB page
+[    0.391320] HugeTLB: 0 KiB vmemmap can be freed for a 64.0 KiB page
+[    5.756235] m_can_platform 20701000.can: m_can device registered (irq=485, version=32)
+[    5.770362] m_can_platform 4e00000.can: m_can device registered (irq=0, version=32)
+[    6.167236] m_can_platform 20701000.can main_mcan0: renamed from can0
+[    7.932783] IPv6: ADDRCONF(NETDEV_CHANGE): can1: link becomes ready
+[  121.755821] IPv6: ADDRCONF(NETDEV_CHANGE): can1: link becomes ready
+[  141.395657] can: controller area network core
+[  141.416068] can: raw protocol
+root@am62-phyverso-evcs:~# ifconfig -a
+can1      Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
+          UP RUNNING NOARP  MTU:16  Metric:1
+          RX packets:5 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:6 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:10 
+          RX bytes:40 (40.0 B)  TX bytes:48 (48.0 B)
+
+eth0      Link encap:Ethernet  HWaddr 64:1C:10:21:F5:D3  
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+eth1      Link encap:Ethernet  HWaddr E2:F6:9D:A3:84:88  
+          inet addr:192.168.11.10  Bcast:192.168.11.255  Mask:255.255.255.0
+          inet6 addr: fe80::e0f6:9dff:fea3:8488/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:5156 errors:0 dropped:133 overruns:0 frame:0
+          TX packets:65 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:339809 (331.8 KiB)  TX bytes:5870 (5.7 KiB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:82 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:82 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:6220 (6.0 KiB)  TX bytes:6220 (6.0 KiB)
+
+main_mcan0 Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
+          NOARP  MTU:16  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:10 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+          Interrupt:229 
+
+seth0     Link encap:Ethernet  HWaddr 00:16:E8:9D:AA:EF  
+          inet addr:192.168.5.12  Bcast:0.0.0.0  Mask:255.255.255.0
+          inet6 addr: fe80::216:e8ff:fe9d:aaef/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:359 errors:0 dropped:2 overruns:0 frame:0
+          TX packets:431 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:100 
+          RX bytes:10276 (10.0 KiB)  TX bytes:468902 (457.9 KiB)
+
+seth1     Link encap:Ethernet  HWaddr 00:16:E8:3D:C0:C4  
+          inet addr:192.168.6.12  Bcast:0.0.0.0  Mask:255.255.255.0
+          inet6 addr: fe80::216:e8ff:fe3d:c0c4/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:359 errors:0 dropped:2 overruns:0 frame:0
+          TX packets:431 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:100 
+          RX bytes:10276 (10.0 KiB)  TX bytes:468902 (457.9 KiB)
+
+root@am62-phyverso-evcs:~# 
+CTRL-A Z for help | 115200 8N1 | NOR | Minicom 2.8 | VT102 | Offline | ttyUSB0                                                                                         
+
+
+
+
+root@ruggedboard-imx6ul:~# ip link set can0 down                                                                                                                        
+root@ruggedboard-imx6ul:~# ip link set can0 up type can bitrate 1000000                                                                                                 
+[   52.963512] IPv6: ADDRCONF(NETDEV_CHANGE): can0: link becomes ready
+root@ruggedboard-imx6ul:~# ip link set can0 up  
+root@ruggedboard-imx6ul:~# cansend can0 000#DE.AD.BE.EF.CA.FE.BA.BE
+root@ruggedboard-imx6ul:~# cansend can0 000#DE.AD.BE.EF.CA.FE.BA.BE
+root@ruggedboard-imx6ul:~# cansend can0 000#DE.AD.BE.EF.CA.FE.BA.BE
+root@ruggedboard-imx6ul:~# cansend can0 000#DE.AD.BE.EF.CA.FE.BA.BE
+root@ruggedboard-imx6ul:~# cansend can0 000#DE.AD.BE.EF.CA.FE.BA.BE
+root@ruggedboard-imx6ul:~# candump can0
+  can0  000   [8]  DE AD BE EF CA FE BA BE
+  can0  000   [8]  DE AD BE EF CA FE BA BE
+  can0  000   [8]  DE AD BE EF CA FE BA BE
+  can0  000   [8]  DE AD BE EF CA FE BA BE
+  can0  000   [8]  DE AD BE EF CA FE BA BE
+  can0  000   [8]  DE AD BE EF CA FE BA BE
+
+CTRL-A Z for help | 115200 8N1 | NOR | Minicom 2.

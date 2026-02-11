@@ -1,0 +1,34 @@
+/home/phytec/yocto/tools/templateconf
+
+
+
+
+bharati@rati:/media/bharati/f5ffbdab-a8de-49d5-a80a-316466994fdc/phytec/yocto$ source sources/poky/oe-init-build-env 
+Error: TEMPLATECONF value points to nonexistent directory '/home/phytec/yocto/tools/templateconf'
+
+
+
+I chnaged the path 
+
+vi ../build/conf/templateconf.cfg
+#/home/phytec/yocto/tools/templateconf
+
+/media/bharati/f5ffbdab-a8de-49d5-a80a-316466994fdc/phytec/yocto/tools/templateconf
+
+
+
+
+tool chain installtion:
+
+bharati@rati:/media/bharati/f5ffbdab-a8de-49d5-a80a-316466994fdc/phytec/imx8mp_toolchain$ ./phytec-ampliphy-vendor-xwayland-glibc-x86_64-phytec-qt6demo-image-cortexa53-crypto-toolchain-4.0.13.sh 
+ampliPHY Vendor xwayland (Phytec Vendor Distribution) SDK installer version 4.0.13
+==================================================================================
+Enter target directory for SDK (default: /opt/ampliphy-vendor-xwayland/4.0.13): 
+You are about to install the SDK to "/opt/ampliphy-vendor-xwayland/4.0.13". Proceed [Y/n]? y
+[sudo] password for bharati: 
+Extracting SDK.....................................................................................................................................................................................................................................................................................................................................................................................................................................................................done
+Setting it up...done
+SDK has been successfully set up and is ready to be used.
+Each time you wish to use the SDK in a new shell session, you need to source the environment setup script e.g.
+ $ . /opt/ampliphy-vendor-xwayland/4.0.13/environment-setup-cortexa53-crypto-phytec-linux
+

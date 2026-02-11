@@ -1,0 +1,100 @@
+root@phyboard-lyra-am62xx-3:~# manager --conf sample.yaml 
+2026-01-09 10:51:42.231480 [INFO] manager          ::   ________      __                _   
+2026-01-09 10:51:42.231734 [INFO] manager          ::  |  ____\ \    / /               | |
+2026-01-09 10:51:42.231776 [INFO] manager          ::  | |__   \ \  / /__ _ __ ___  ___| |_
+2026-01-09 10:51:42.231810 [INFO] manager          ::  |  __|   \ \/ / _ \ '__/ _ \/ __| __|
+2026-01-09 10:51:42.231845 [INFO] manager          ::  | |____   \  /  __/ | |  __/\__ \ |_
+2026-01-09 10:51:42.231954 [INFO] manager          ::  |______|   \/ \___|_|  \___||___/\__|
+2026-01-09 10:51:42.231991 [INFO] manager          :: 
+2026-01-09 10:51:42.232020 [INFO] manager          :: everest-framework 0.23.0 main@v0.23.0
+2026-01-09 10:51:42.232051 [INFO] manager          :: everest-core 2025.8.0 main@2025.8.0-dirty
+2026-01-09 10:51:42.232078 [INFO] manager          :: 
+2026-01-09 10:51:42.232107 [INFO] manager          :: Using MQTT broker localhost:1883
+2026-01-09 10:51:42.232145 [INFO] manager          :: Telemetry enabled
+2026-01-09 10:51:42.259178 [INFO] everest_ctrl     :: Launching controller service on port 8849
+2026-01-09 10:51:42.270648 [INFO] manager          :: Boot mode is set to YamlFile, loading module configs from YAML file
+2026-01-09 10:51:42.270856 [INFO] manager          :: Loading config file at: /root/sample.yaml
+2026-01-09 10:51:42.279835 [INFO] manager          :: Config loading completed in 44ms
+2026-01-09 10:51:42.285739 [INFO] manager          :: Starting 1 modules
+2026-01-09 10:51:42.679554 [INFO] powersupply_dc:  :: Initializing Tonhe power supply
+2026-01-09 10:51:42.680912 [INFO] powersupply_dc:  :: Tonhe CAN addr: master=160 module=1
+2026-01-09 10:51:42.681247 [INFO] powersupply_dc:  :: Module powersupply_dc initialized [365ms]
+2026-01-09 10:51:42.725472 [INFO] manager          :: Clearing retained topics published by manager during startup
+2026-01-09 10:51:42.726408 [INFO] manager          :: 🚙🚙🚙 All modules are initialized. EVerest up and running [496ms] 🚙🚙🚙
+2026-01-09 10:51:42.768628 [INFO] powersupply_dc:  :: TH40F10030C8L ready
+2026-01-09 10:51:42.769301 [INFO] powersupply_dc:  :: Controller requested V=100 I=16
+2026-01-09 10:51:42.769751 [INFO] powersupply_dc:  :: CAN TX -> id=0x080601A0 dlc=8 data=AA 01 E8 03 40 06 00 00 
+2026-01-09 10:51:55.166310 [INFO] powersupply_dc:  :: RX ACCEPTED | SRC=0xa0 DST=0x1
+2026-01-09 10:51:55.166672 [INFO] powersupply_dc:  :: CAN RX -> id=0x1806A001 dlc=8 data=AA 01 A0 0F 10 27 00 00 
+2026-01-09 10:53:17.105485 [INFO] powersupply_dc:  :: RX ACCEPTED | SRC=0xa0 DST=0x1
+2026-01-09 10:53:17.106144 [INFO] powersupply_dc:  :: CAN RX -> id=0x1806A001 dlc=8 data=AA 01 E8 03 40 06 00 00 
+2026-01-09 10:53:33.339407 [INFO] powersupply_dc:  :: RX ACCEPTED | SRC=0xa0 DST=0x1
+2026-01-09 10:53:33.340244 [INFO] powersupply_dc:  :: CAN RX -> id=0x1806A001 dlc=8 data=AA 01 E8 03 40 06 00 00 
+2026-01-09 10:53:33.959180 [INFO] powersupply_dc:  :: RX ACCEPTED | SRC=0xa0 DST=0x1
+2026-01-09 10:53:33.959669 [INFO] powersupply_dc:  :: CAN RX -> id=0x1806A001 dlc=8 data=AA 01 E8 03 40 06 00 00 
+2026-01-09 10:53:34.969296 [INFO] powersupply_dc:  :: RX ACCEPTED | SRC=0xa0 DST=0x1
+2026-01-09 10:53:34.969854 [INFO] powersupply_dc:  :: CAN RX -> id=0x1806A001 dlc=8 data=AA 01 E8 03 40 06 00 00 
+^C
+root@phyboard-lyra-am62xx-3:~# 
+
+
+
+
+
+
+
+
+
+
+root@ruggedboard-imx6ul:~# candump can0
+  can0  1A0   [8]  AA 01 E8 03 40 06 00 00
+^Croot@ruggedboard-imx6ul:~# cansend can0 1806A001#AA01A00F10270000
+root@ruggedboard-imx6ul:~# cansend can0 180601A0#AA01A00F10270000                                                                                                                                           
+root@ruggedboard-imx6ul:~# cansend can0 180601A0#AA01A00F10270000
+root@ruggedboard-imx6ul:~# cansend can0 180601A0#AA01A00F10270000
+root@ruggedboard-imx6ul:~# cansend can0 180601A0#AA01E80340060000
+root@ruggedboard-imx6ul:~# cansend can0 180601A0#AA01E80340060000
+root@ruggedboard-imx6ul:~# cansend can0 1806A001#AA01E80340060000                                                                                                                                           
+root@ruggedboard-imx6ul:~# cansend can0 1806A001#AA01E80340060000
+root@ruggedboard-imx6ul:~# cansend can0 1806A001#AA01E80340060000
+root@ruggedboard-imx6ul:~# cansend can0 1806A001#AA01E80340060000
+root@ruggedboard-imx6ul:~# 
+
+
+
+
+root@phyboard-lyra-am62xx-3:~# manager --conf sample.yaml 
+2026-01-09 13:58:43.100932 [INFO] manager          ::   ________      __                _   
+2026-01-09 13:58:43.101197 [INFO] manager          ::  |  ____\ \    / /               | |
+2026-01-09 13:58:43.101243 [INFO] manager          ::  | |__   \ \  / /__ _ __ ___  ___| |_
+2026-01-09 13:58:43.101282 [INFO] manager          ::  |  __|   \ \/ / _ \ '__/ _ \/ __| __|
+2026-01-09 13:58:43.101321 [INFO] manager          ::  | |____   \  /  __/ | |  __/\__ \ |_
+2026-01-09 13:58:43.101614 [INFO] manager          ::  |______|   \/ \___|_|  \___||___/\__|
+2026-01-09 13:58:43.101652 [INFO] manager          :: 
+2026-01-09 13:58:43.101685 [INFO] manager          :: everest-framework 0.23.0 main@v0.23.0
+2026-01-09 13:58:43.101720 [INFO] manager          :: everest-core 2025.8.0 main@2025.8.0-dirty
+2026-01-09 13:58:43.101750 [INFO] manager          :: 
+2026-01-09 13:58:43.101783 [INFO] manager          :: Using MQTT broker localhost:1883
+2026-01-09 13:58:43.101825 [INFO] manager          :: Telemetry enabled
+2026-01-09 13:58:43.128859 [INFO] everest_ctrl     :: Launching controller service on port 8849
+2026-01-09 13:58:43.140960 [INFO] manager          :: Boot mode is set to YamlFile, loading module configs from YAML file
+2026-01-09 13:58:43.141166 [INFO] manager          :: Loading config file at: /root/sample.yaml
+2026-01-09 13:58:43.150124 [INFO] manager          :: Config loading completed in 45ms
+2026-01-09 13:58:43.155377 [INFO] manager          :: Starting 1 modules
+2026-01-09 13:58:43.542798 [INFO] powersupply_dc:  :: Initializing Tonhe power supply
+2026-01-09 13:58:43.543575 [INFO] powersupply_dc:  :: Tonhe CAN addr: master=160 module=1
+2026-01-09 13:58:43.543773 [INFO] powersupply_dc:  :: Module powersupply_dc initialized [359ms]
+2026-01-09 13:58:43.586771 [INFO] manager          :: Clearing retained topics published by manager during startup
+2026-01-09 13:58:43.587706 [INFO] manager          :: 🚙🚙🚙 All modules are initialized. EVerest up and running [488ms] 🚙🚙🚙
+2026-01-09 13:58:43.630488 [INFO] powersupply_dc:  :: TH40F10030C8L ready
+2026-01-09 13:58:43.631159 [INFO] powersupply_dc:  :: Controller requested V=100 I=16
+2026-01-09 13:58:43.631589 [INFO] powersupply_dc:  :: CAN TX -> id=0x080601A0 dlc=8 data=AA 01 E8 03 40 06 00 00 
+2026-01-09 13:58:46.294352 [INFO] powersupply_dc:  :: RX ACCEPTED | SRC=0xa0 DST=0x1
+2026-01-09 13:58:46.294705 [INFO] powersupply_dc:  :: CAN RX -> id=0x1806A001 dlc=8 data=AA 01 A0 0F 10 27 00 00 
+2026-01-09 14:00:33.909657 [INFO] powersupply_dc:  :: RX ACCEPTED | SRC=0xa0 DST=0x1
+2026-01-09 14:00:33.910093 [INFO] powersupply_dc:  :: CAN RX -> id=0x1806A001 dlc=8 data=AA 01 E8 03 40 06 00 00 
+2026-01-09 14:01:31.415084 [WARN] powersupply_dc: void TonheCanDevice::on_rx(uint32_t, const std::vector<unsigned char>&) :: RX REJECTED | SRC=0x1 DST=0xa0
+2026-01-09 14:01:35.782077 [WARN] powersupply_dc: void TonheCanDevice::on_rx(uint32_t, const std::vector<unsigned char>&) :: RX REJECTED | SRC=0x1 DST=0xa0
+2026-01-09 14:01:36.741824 [WARN] powersupply_dc: void TonheCanDevice::on_rx(uint32_t, const std::vector<unsigned char>&) :: RX REJECTED | SRC=0x1 DST=0xa0
+
+
